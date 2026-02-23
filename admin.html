@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Klinik Pratama</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-[#f5f7fb] text-slate-900 min-h-screen overflow-x-hidden">
+
+    <!-- Admin Container -->
+    <div id="admin-app" class="min-h-screen">
+        <!-- Content will be injected by JavaScript -->
+    </div>
+
+    <!-- NOTIFICATION SYSTEM -->
+    <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[200] transform translate-y-32 transition-all duration-500 opacity-0 px-6 py-4 rounded-2xl flex items-center space-x-3 glass shadow-2xl min-w-[320px]">
+        <div id="toastIconContainer" class="p-2 rounded-xl">
+            <i data-lucide="info" id="toastIcon" class="w-5 h-5"></i>
+        </div>
+        <div>
+            <p id="toastMessage" class="font-bold text-slate-800 text-sm"></p>
+        </div>
+    </div>
+
+    <!-- LOGOUT MODAL -->
+    <div id="logoutModal" class="hidden fixed inset-0 z-[95] flex items-center justify-center p-4 bg-black/30 backdrop-blur-sm">
+        <div class="bg-white rounded-[2rem] shadow-2xl w-full max-w-sm overflow-hidden border border-slate-100">
+            <div class="p-7 space-y-5 text-center">
+                <div class="w-12 h-12 rounded-2xl bg-rose-50 text-rose-500 flex items-center justify-center mx-auto mb-1">
+                    <i data-lucide="log-out" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h2 class="text-lg font-extrabold text-slate-800">Keluar dari sistem?</h2>
+                    <p class="text-sm text-slate-500 mt-1">Anda akan keluar dari akun admin dan perlu login kembali untuk mengakses dashboard.</p>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-3 pt-2 justify-center">
+                    <button onclick="confirmLogout()" class="sm:flex-1 bg-rose-500 text-white py-3 rounded-2xl font-bold shadow-md shadow-rose-200 hover:bg-rose-600 transition-all text-sm px-6">Ya, Logout</button>
+                    <button onclick="closeLogoutModal()" class="sm:flex-1 bg-slate-50 text-slate-600 py-3 rounded-2xl font-bold border border-slate-200 hover:bg-slate-100 transition-all text-sm px-6">Batal</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="shared.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>
