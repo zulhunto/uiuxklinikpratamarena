@@ -114,6 +114,45 @@ function toggleAdminComplaintField() {
   }
 }
 
+// Edit layanan
+function editService(index) {
+  const service = servicesData[index];
+  if (!service) return;
+  
+  // Prompt untuk edit nama
+  const newName = prompt('Edit nama layanan:', service.name);
+  if (newName === null) return; // User cancel
+  if (!newName.trim()) {
+    showToast('Nama layanan tidak boleh kosong', 'error');
+    return;
+  }
+  
+  // Prompt untuk edit deskripsi
+  const newDesc = prompt('Edit deskripsi layanan:', service.desc || '');
+  if (newDesc === null) return; // User cancel
+  
+  // Prompt untuk edit jadwal
+  const newSchedule = prompt('Edit jadwal layanan:', service.schedule || '');
+  if (newSchedule === null) return; // User cancel
+  
+  // Prompt untuk edit dokter
+  const newDoctor = prompt('Edit dokter/penanggung jawab:', service.doctor || '');
+  if (newDoctor === null) return; // User cancel
+  
+  // Update service data
+  servicesData[index] = {
+    ...service,
+    name: newName.trim(),
+    desc: newDesc.trim(),
+    schedule: newSchedule.trim(),
+    doctor: newDoctor.trim()
+  };
+  
+  persistServices();
+  navigateTo('services');
+  showToast('Layanan berhasil diperbarui', 'success');
+}
+
 // Hapus pendaftaran dari tabel admin
 function deleteRegistration(index) {
   registrations.splice(index, 1);
@@ -969,3 +1008,10 @@ function confirmLogout() {
   localStorage.removeItem(LS_KEYS.user);
   window.location.href = 'index.html';
 }
+
+// ============================================================================
+// GLOBAL EXPORTS
+// Expose functions to global scope for inline HTML event handlers
+// ============================================================================
+
+window.editService = editService;

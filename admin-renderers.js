@@ -725,9 +725,14 @@ function renderAdminServices() {
                                 ${s.doctor ? `<span class="text-[10px] text-slate-400 flex items-center gap-1"><i data-lucide="user-md" class="w-3 h-3"></i> ${s.doctor}</span>` : ''}
                               </div>
                             </div>
-                            <button class="p-2 rounded-lg text-slate-300 hover:text-rose-500 hover:bg-rose-50 transition-all opacity-0 group-hover:opacity-100" data-admin-service-delete="${s.id}" title="Hapus layanan">
-                              <i data-lucide="trash-2" class="w-4 h-4"></i>
-                            </button>
+                            <div class="flex items-center gap-2">
+                              <button onclick="editService(${idx})" class="p-2 rounded-lg text-slate-300 hover:text-sky-500 hover:bg-sky-50 transition-all opacity-0 group-hover:opacity-100" title="Edit layanan">
+                                <i data-lucide="edit-2" class="w-4 h-4"></i>
+                              </button>
+                              <button class="p-2 rounded-lg text-slate-300 hover:text-rose-500 hover:bg-rose-50 transition-all opacity-0 group-hover:opacity-100" data-admin-service-delete="${s.id}" title="Hapus layanan">
+                                <i data-lucide="trash-2" class="w-4 h-4"></i>
+                              </button>
+                            </div>
                           </div>
                         </div>
                       </div>
