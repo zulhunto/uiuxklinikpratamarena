@@ -20,6 +20,112 @@
     <!-- Toast Container -->
     <div id="toast-container" class="fixed top-4 right-4 z-50 space-y-2"></div>
 
+    <!-- EDIT MEDICINE MODAL -->
+    <div id="editMedicineModal" class="hidden fixed inset-0 z-[95] flex items-center justify-center p-4 bg-black/30 backdrop-blur-sm">
+        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden">
+            <!-- Header -->
+            <div class="bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 px-8 py-6">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center">
+                            <i data-lucide="pill" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-bold text-white">Edit Obat</h2>
+                            <p class="text-xs text-white/80">Perbarui informasi obat</p>
+                        </div>
+                    </div>
+                    <button onclick="closeEditMedicineModal()" class="text-white/70 hover:text-white transition-all p-2 hover:bg-white/10 rounded-xl">
+                        <i data-lucide="x" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Form -->
+            <form id="editMedicineForm" class="p-8 space-y-6">
+                <input type="hidden" id="editMedicineIndex">
+                
+                <!-- Nama Obat -->
+                <div>
+                    <label for="editMedicineName" class="block text-sm font-bold text-slate-700 mb-2">
+                        Nama Obat <span class="text-rose-500">*</span>
+                    </label>
+                    <div class="relative">
+                        <div class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
+                            <i data-lucide="pill" class="w-4 h-4"></i>
+                        </div>
+                        <input 
+                            type="text" 
+                            id="editMedicineName" 
+                            name="editMedicineName" 
+                            required
+                            class="w-full pl-11 pr-4 py-3 rounded-2xl border border-slate-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 transition-all outline-none text-slate-800 font-medium"
+                            placeholder="Contoh: Paracetamol 500mg"
+                        >
+                    </div>
+                </div>
+                
+                <!-- Dosis -->
+                <div>
+                    <label for="editMedicineDosis" class="block text-sm font-bold text-slate-700 mb-2">
+                        Dosis
+                    </label>
+                    <div class="relative">
+                        <div class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
+                            <i data-lucide="gauge" class="w-4 h-4"></i>
+                        </div>
+                        <input 
+                            type="text" 
+                            id="editMedicineDosis" 
+                            name="editMedicineDosis" 
+                            class="w-full pl-11 pr-4 py-3 rounded-2xl border border-slate-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 transition-all outline-none text-slate-800 font-medium"
+                            placeholder="Contoh: 3×1 tablet"
+                        >
+                    </div>
+                </div>
+                
+                <!-- Jumlah Stok -->
+                <div>
+                    <label for="editMedicineQty" class="block text-sm font-bold text-slate-700 mb-2">
+                        Jumlah Stok <span class="text-rose-500">*</span>
+                    </label>
+                    <div class="relative">
+                        <div class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
+                            <i data-lucide="package" class="w-4 h-4"></i>
+                        </div>
+                        <input 
+                            type="number" 
+                            id="editMedicineQty" 
+                            name="editMedicineQty" 
+                            min="0"
+                            required
+                            class="w-full pl-11 pr-4 py-3 rounded-2xl border border-slate-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 transition-all outline-none text-slate-800 font-medium"
+                            placeholder="Contoh: 100"
+                        >
+                    </div>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row gap-3 pt-4 border-t border-slate-100">
+                    <button 
+                        type="submit" 
+                        class="flex-1 bg-gradient-to-r from-emerald-500 to-teal-500 text-white py-3.5 rounded-2xl font-bold hover:from-emerald-600 hover:to-teal-600 transition-all shadow-md shadow-emerald-200 hover:shadow-lg hover:shadow-emerald-300 text-sm"
+                    >
+                        <i data-lucide="save" class="w-4 h-4 inline-block mr-2"></i>
+                        Simpan Perubahan
+                    </button>
+                    <button 
+                        type="button" 
+                        onclick="closeEditMedicineModal()" 
+                        class="flex-1 bg-slate-50 text-slate-700 py-3.5 rounded-2xl font-bold hover:bg-slate-100 transition-all border border-slate-200 text-sm"
+                    >
+                        Batal
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- Script Files - Load Order Matters -->
     <script src="shared.js"></script>
     <script src="utils.js"></script>

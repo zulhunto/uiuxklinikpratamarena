@@ -733,7 +733,7 @@ function renderApotekerMedicines() {
                             </button>
                           </td>
                           <td class="px-6 py-4 text-right space-x-1">
-                            <button class="inline-flex items-center justify-center w-8 h-8 rounded-lg border border-slate-200 text-slate-500 hover:border-emerald-500 hover:text-emerald-600 transition-all" title="Edit stok">
+                            <button onclick="editMedicineApoteker(${idx})" class="inline-flex items-center justify-center w-8 h-8 rounded-lg border border-slate-200 text-slate-500 hover:border-emerald-500 hover:text-emerald-600 transition-all" title="Edit obat">
                               <i data-lucide="pencil" class="w-4 h-4"></i>
                             </button>
                             <button onclick="deleteMedicineApoteker(${idx})" class="inline-flex items-center justify-center w-8 h-8 rounded-lg border border-slate-200 text-slate-400 hover:border-rose-500 hover:text-rose-600 transition-all" title="Hapus obat">
@@ -1565,6 +1565,61 @@ function deleteMedicineApoteker(index) {
   showToast('Obat dihapus', 'info');
 }
 
+// Edit medicine with modal
+function editMedicineApoteker(index) {
+  const med = medicineStock[index];
+  if (!med) return;
+  
+  // Populate form with medicine data
+  document.getElementById('editMedicineIndex').value = index;
+  document.getElementById('editMedicineName').value = med.name;
+  document.getElementById('editMedicineDosis').value = med.dosis || '';
+  document.getElementById('editMedicineQty').value = med.qty != null ? med.qty : '';
+  
+  // Show modal
+  document.getElementById('editMedicineModal').classList.remove('hidden');
+}
+
+// Close edit medicine modal
+function closeEditMedicineModal() {
+  document.getElementById('editMedicineModal').classList.add('hidden');
+  document.getElementById('editMedicineForm').reset();
+}
+
+// Save edited medicine
+function saveEditedMedicine(event) {
+  event.preventDefault();
+  
+  const index = parseInt(document.getElementById('editMedicineIndex').value);
+  const name = document.getElementById('editMedicineName').value.trim();
+  const dosis = document.getElementById('editMedicineDosis').value.trim();
+  const qty = parseInt(document.getElementById('editMedicineQty').value);
+  
+  // Validate name and qty
+  if (!name) {
+    showToast('Nama obat tidak boleh kosong', 'error');
+    return;
+  }
+  
+  if (isNaN(qty) || qty < 0) {
+    showToast('Jumlah stok harus angka valid', 'error');
+    return;
+  }
+  
+  // Update medicine data
+  medicineStock[index] = {
+    ...medicineStock[index],
+    name,
+    dosis,
+    qty
+  };
+  
+  persistMedicines();
+  closeEditMedicineModal();
+  navigateTo('medicines');
+  showToast('Obat berhasil diperbarui', 'success');
+}
+
 // Toast notification
 function showToast(message, type = 'info') {
   const container = document.getElementById('toast-container');
@@ -2334,6 +2389,12 @@ function printMedicineInflowToday() {
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
+  // Setup edit medicine form listener
+  const editForm = document.getElementById('editMedicineForm');
+  if (editForm) {
+    editForm.addEventListener('submit', saveEditedMedicine);
+  }
+  
   if (checkAuth()) {
     navigateTo('dashboard');
   }
@@ -2351,6 +2412,9 @@ window.confirmLogout = confirmLogout;
 window.logout = logout;
 window.toggleMedStatusApoteker = toggleMedStatusApoteker;
 window.deleteMedicineApoteker = deleteMedicineApoteker;
+window.editMedicineApoteker = editMedicineApoteker;
+window.closeEditMedicineModal = closeEditMedicineModal;
+window.saveEditedMedicine = saveEditedMedicine;
 window.printMedicineList = printMedicineList;
 window.exportMedicineToExcel = exportMedicineToExcel;
 window.printOutflowHistory = printOutflowHistory;
