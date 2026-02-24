@@ -294,6 +294,35 @@
         </div>
     </div>
 
+    <!-- PATIENT SLIP MODAL -->
+    <div id="patientSlipModal" class="hidden fixed inset-0 z-[95] flex items-center justify-center p-4 bg-black/30 backdrop-blur-sm">
+        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-md overflow-hidden">
+            <div class="p-8 text-center">
+                <!-- Icon -->
+                <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-emerald-50 to-teal-50 flex items-center justify-center mx-auto mb-6">
+                    <i data-lucide="clipboard-check" class="w-10 h-10 text-emerald-500"></i>
+                </div>
+                
+                <!-- Title and Description -->
+                <h2 class="text-xl font-bold text-slate-800 mb-3">Pendaftaran Berhasil!</h2>
+                <p class="text-sm text-slate-500 leading-relaxed mb-8">
+                    Pendaftaran Anda telah berhasil disimpan. Silakan cetak slip pasien untuk mendapatkan nomor antrian.
+                </p>
+                
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <button onclick="printPatientSlipFromIndex()" class="flex-1 bg-gradient-to-r from-emerald-500 to-teal-500 text-white py-3.5 rounded-2xl font-bold hover:from-emerald-600 hover:to-teal-600 transition-all shadow-md shadow-emerald-200 hover:shadow-lg hover:shadow-emerald-300 text-sm transform hover:-translate-y-0.5">
+                        <i data-lucide="printer" class="w-4 h-4 inline-block mr-2"></i>
+                        Cetak Slip Pasien
+                    </button>
+                    <button onclick="closePatientSlipModal()" class="flex-1 bg-slate-50 text-slate-700 py-3.5 rounded-2xl font-semibold hover:bg-slate-100 transition-all border border-slate-200 text-sm">
+                        Tutup
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Script Files - Load Order Matters -->
     <script src="shared.js"></script>
     <script src="utils.js"></script>

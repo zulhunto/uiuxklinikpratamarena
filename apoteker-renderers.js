@@ -20,7 +20,7 @@ function renderApotekerSidebar(activePage) {
             <i data-lucide="pill" class="w-5 h-5"></i>
           </div>
           <div class="leading-tight">
-            <p class="text-[13px] font-extrabold tracking-tight text-slate-900">Klinik<span class="text-emerald-500">Pratama</span></p>
+            <p class="text-[16px] font-extrabold tracking-tight text-slate-900">Klinik<span class="text-emerald-500">Pratama</span></p>
           </div>
         </div>
       </div>
@@ -41,15 +41,11 @@ function renderApotekerSidebar(activePage) {
         </button>
       </nav>
       <div class="p-4 border-t border-slate-100 shrink-0">
-        <button onclick="logout()" class="group flex items-center gap-3 px-4 py-3.5 rounded-2xl bg-white border border-slate-200 hover:border-rose-200 hover:bg-rose-50/50 transition-all w-full text-left shadow-sm hover:shadow-md hover:shadow-rose-100/50">
-          <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-rose-100 to-rose-50 text-rose-500 group-hover:from-rose-500 group-hover:to-rose-600 group-hover:text-white flex items-center justify-center transition-all shadow-sm">
-            <i data-lucide="log-out" class="w-4 h-4 group-hover:scale-110 transition-transform"></i>
+        <button onclick="logout()" class="group w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-rose-50 transition-all duration-300">
+          <div class="w-10 h-10 rounded-lg bg-rose-500 text-white flex items-center justify-center shadow-md shadow-rose-200 group-hover:shadow-lg group-hover:shadow-rose-300 group-hover:scale-105 transition-all duration-300">
+            <i data-lucide="log-out" class="w-5 h-5"></i>
           </div>
-          <div class="flex-1">
-            <span class="text-[13px] font-semibold text-slate-700 group-hover:text-rose-600 transition-colors block">Logout</span>
-            <span class="text-[10px] text-slate-400 group-hover:text-rose-400 transition-colors">Keluar dari sistem</span>
-          </div>
-          <i data-lucide="chevron-right" class="w-4 h-4 text-slate-300 group-hover:text-rose-400 group-hover:translate-x-1 transition-all"></i>
+          <span class="text-sm font-semibold text-slate-700 group-hover:text-rose-600 transition-colors">Logout</span>
         </button>
       </div>
     </aside>
@@ -61,7 +57,7 @@ function renderApotekerSidebar(activePage) {
           <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-emerald-500 to-teal-500 flex items-center justify-center text-white">
             <i data-lucide="pill" class="w-4 h-4"></i>
           </div>
-          <span class="text-sm font-bold text-slate-900">Klinik<span class="text-emerald-500">Pratama</span></span>
+          <span class="text-base font-bold text-slate-900">Klinik<span class="text-emerald-500">Pratama</span></span>
         </div>
         <button onclick="toggleMobileMenu()" class="p-2 text-slate-600 hover:bg-slate-100 rounded-lg">
           <i data-lucide="menu" class="w-5 h-5"></i>
@@ -88,15 +84,11 @@ function renderApotekerSidebar(activePage) {
             </button>
           `).join('')}
           <div class="pt-4 mt-4 border-t border-slate-100">
-            <button onclick="logout(); toggleMobileMenu();" class="group w-full flex items-center gap-3 px-4 py-3.5 rounded-2xl bg-rose-50 border border-rose-100 hover:bg-rose-100 hover:border-rose-200 transition-all shadow-sm hover:shadow-md hover:shadow-rose-100/50">
-              <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-rose-500 to-rose-600 text-white flex items-center justify-center shadow-sm">
-                <i data-lucide="log-out" class="w-4 h-4 group-hover:scale-110 transition-transform"></i>
+            <button onclick="logout(); toggleMobileMenu();" class="group w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-rose-500 transition-all duration-300">
+              <div class="w-10 h-10 rounded-lg bg-rose-500 text-white flex items-center justify-center shadow-md group-hover:shadow-lg group-hover:shadow-rose-300 group-hover:scale-105 transition-all duration-300">
+                <i data-lucide="log-out" class="w-5 h-5"></i>
               </div>
-              <div class="flex-1">
-                <span class="text-sm font-semibold text-rose-700 block">Logout</span>
-                <span class="text-[10px] text-rose-500">Keluar dari sistem</span>
-              </div>
-              <i data-lucide="chevron-right" class="w-4 h-4 text-rose-400 group-hover:translate-x-1 transition-transform"></i>
+              <span class="text-sm font-semibold text-slate-700 group-hover:text-white transition-colors">Logout</span>
             </button>
           </div>
         </nav>
@@ -502,24 +494,26 @@ function renderApotekerDashboard() {
             </div>
 
             <!-- Quick Actions -->
-            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-              <button onclick="navigateTo('medicines')" class="flex items-center gap-3 p-4 rounded-xl bg-white border border-slate-100 shadow-sm hover:shadow-md hover:border-emerald-200 transition-all text-left">
-                <div class="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-500 flex items-center justify-center">
-                  <i data-lucide="pill" class="w-5 h-5"></i>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <button onclick="navigateTo('medicines')" class="flex items-center gap-4 p-5 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-lg hover:border-emerald-200 transition-all text-left group">
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-400 to-teal-500 text-white flex items-center justify-center shadow-md group-hover:shadow-lg transition-all">
+                  <i data-lucide="pill" class="w-7 h-7"></i>
                 </div>
-                <span class="text-sm font-medium text-slate-700">Stok Obat</span>
+                <span class="text-base font-bold text-slate-800">Stok Obat</span>
               </button>
-              <button onclick="navigateTo('outflow')" class="flex items-center gap-3 p-4 rounded-xl bg-white border border-slate-100 shadow-sm hover:shadow-md hover:border-emerald-200 transition-all text-left">
-                <div class="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-500 flex items-center justify-center">
-                  <i data-lucide="package-minus" class="w-5 h-5"></i>
+              
+              <button onclick="navigateTo('outflow')" class="flex items-center gap-4 p-5 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-lg hover:border-emerald-200 transition-all text-left group">
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-400 to-cyan-500 text-white flex items-center justify-center shadow-md group-hover:shadow-lg transition-all">
+                  <i data-lucide="package-minus" class="w-7 h-7"></i>
                 </div>
-                <span class="text-sm font-medium text-slate-700">Pengeluaran</span>
+                <span class="text-base font-bold text-slate-800">Pengeluaran</span>
               </button>
-              <button onclick="navigateTo('profile')" class="flex items-center gap-3 p-4 rounded-xl bg-white border border-slate-100 shadow-sm hover:shadow-md hover:border-teal-200 transition-all text-left">
-                <div class="w-10 h-10 rounded-lg bg-teal-50 text-teal-500 flex items-center justify-center">
-                  <i data-lucide="user-circle" class="w-5 h-5"></i>
+              
+              <button onclick="navigateTo('profile')" class="flex items-center gap-4 p-5 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-lg hover:border-teal-200 transition-all text-left group">
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-teal-400 to-emerald-500 text-white flex items-center justify-center shadow-md group-hover:shadow-lg transition-all">
+                  <i data-lucide="user-circle" class="w-7 h-7"></i>
                 </div>
-                <span class="text-sm font-medium text-slate-700">Profil</span>
+                <span class="text-base font-bold text-slate-800">Profil</span>
               </button>
             </div>
           </div>
@@ -1365,20 +1359,27 @@ function renderApotekerProfile() {
 // Logout Modal
 function renderLogoutModal() {
   return `
-    <div id="logout-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 backdrop-blur-sm">
-      <div class="bg-white rounded-2xl p-6 w-full max-w-sm mx-4 shadow-2xl">
-        <div class="text-center">
-          <div class="w-14 h-14 rounded-full bg-rose-50 flex items-center justify-center mx-auto mb-4">
-            <i data-lucide="log-out" class="w-7 h-7 text-rose-500"></i>
+    <div id="logout-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/30 backdrop-blur-sm">
+      <div class="bg-white rounded-3xl shadow-2xl w-full max-w-md mx-4 overflow-hidden">
+        <div class="p-8 text-center">
+          <!-- Icon -->
+          <div class="w-16 h-16 rounded-2xl bg-rose-50 flex items-center justify-center mx-auto mb-6">
+            <i data-lucide="log-out" class="w-8 h-8 text-rose-500"></i>
           </div>
-          <h3 class="text-lg font-bold text-slate-900 mb-2">Keluar?</h3>
-          <p class="text-sm text-slate-500 mb-6">Anda akan keluar dari sistem apoteker.</p>
-          <div class="flex gap-3">
-            <button onclick="closeLogoutModal()" class="flex-1 px-4 py-2.5 border border-slate-200 text-slate-700 rounded-xl text-sm font-medium hover:bg-slate-50 transition-all">
-              Batal
+          
+          <!-- Title and Description -->
+          <h3 class="text-xl font-bold text-slate-800 mb-3">Keluar dari sistem?</h3>
+          <p class="text-sm text-slate-500 leading-relaxed mb-8">
+            Anda akan keluar dari akun apoteker dan perlu login kembali untuk mengakses dashboard.
+          </p>
+          
+          <!-- Action Buttons -->
+          <div class="flex flex-col sm:flex-row gap-3">
+            <button onclick="confirmLogout()" class="flex-1 bg-rose-500 text-white py-3.5 rounded-2xl font-bold hover:bg-rose-600 transition-all shadow-md shadow-rose-200 hover:shadow-lg hover:shadow-rose-300 text-sm">
+              Ya, Logout
             </button>
-            <button onclick="confirmLogout()" class="flex-1 px-4 py-2.5 bg-rose-500 text-white rounded-xl text-sm font-semibold hover:bg-rose-600 transition-all">
-              Keluar
+            <button onclick="closeLogoutModal()" class="flex-1 bg-slate-50 text-slate-700 py-3.5 rounded-2xl font-semibold hover:bg-slate-100 transition-all border border-slate-200 text-sm">
+              Batal
             </button>
           </div>
         </div>

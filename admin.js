@@ -969,7 +969,3 @@ function confirmLogout() {
   localStorage.removeItem(LS_KEYS.user);
   window.location.href = 'index.html';
 }
-
-function logout() {
-  openLogoutModal();
-}

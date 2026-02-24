@@ -14,7 +14,7 @@ function renderAdminSidebar(active) {
             <i data-lucide="activity" class="w-5 h-5"></i>
           </div>
           <div class="leading-tight">
-            <p class="text-[13px] font-extrabold tracking-tight text-slate-900">Klinik<span class="text-sky-500">Pratama</span></p>
+            <p class="text-[16px] font-extrabold tracking-tight text-slate-900">Klinik<span class="text-sky-500">Pratama</span></p>
           </div>
         </div>
       </div>
@@ -39,15 +39,11 @@ function renderAdminSidebar(active) {
         </button>
       </nav>
       <div class="p-4 border-t border-slate-100 shrink-0">
-        <button onclick="logout()" class="group flex items-center gap-3 px-4 py-3.5 rounded-2xl bg-white border border-slate-200 hover:border-rose-200 hover:bg-rose-50/50 transition-all w-full text-left shadow-sm hover:shadow-md hover:shadow-rose-100/50">
-          <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-rose-100 to-rose-50 text-rose-500 group-hover:from-rose-500 group-hover:to-rose-600 group-hover:text-white flex items-center justify-center transition-all shadow-sm">
-            <i data-lucide="log-out" class="w-4 h-4 group-hover:scale-110 transition-transform"></i>
+        <button onclick="logout()" class="group w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-rose-50 transition-all duration-300">
+          <div class="w-10 h-10 rounded-lg bg-rose-500 text-white flex items-center justify-center shadow-md shadow-rose-200 group-hover:shadow-lg group-hover:shadow-rose-300 group-hover:scale-105 transition-all duration-300">
+            <i data-lucide="log-out" class="w-5 h-5"></i>
           </div>
-          <div class="flex-1">
-            <span class="text-[13px] font-semibold text-slate-700 group-hover:text-rose-600 transition-colors block">Logout</span>
-            <span class="text-[10px] text-slate-400 group-hover:text-rose-400 transition-colors">Keluar dari sistem</span>
-          </div>
-          <i data-lucide="chevron-right" class="w-4 h-4 text-slate-300 group-hover:text-rose-400 group-hover:translate-x-1 transition-all"></i>
+          <span class="text-sm font-semibold text-slate-700 group-hover:text-rose-600 transition-colors">Logout</span>
         </button>
       </div>
     </aside>
@@ -59,7 +55,7 @@ function renderAdminSidebar(active) {
           <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-sky-500 to-indigo-500 flex items-center justify-center text-white">
             <i data-lucide="activity" class="w-4 h-4"></i>
           </div>
-          <span class="text-sm font-bold text-slate-900">Klinik<span class="text-sky-500">Pratama</span></span>
+          <span class="text-base font-bold text-slate-900">Klinik<span class="text-sky-500">Pratama</span></span>
         </div>
         <button onclick="toggleMobileMenu()" class="p-2 text-slate-600 hover:bg-slate-100 rounded-lg">
           <i data-lucide="menu" class="w-5 h-5"></i>
@@ -101,15 +97,11 @@ function renderAdminSidebar(active) {
           <span>Profil Admin</span>
         </button>
         <div class="pt-4 mt-4 border-t border-slate-100">
-          <button onclick="logout()" class="group w-full text-left flex items-center gap-3 px-4 py-3.5 rounded-2xl bg-rose-50 border border-rose-100 hover:bg-rose-100 hover:border-rose-200 transition-all shadow-sm hover:shadow-md hover:shadow-rose-100/50">
-            <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-rose-500 to-rose-600 text-white flex items-center justify-center shadow-sm">
-              <i data-lucide="log-out" class="w-4 h-4 group-hover:scale-110 transition-transform"></i>
+          <button onclick="logout()" class="group w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-rose-500 transition-all duration-300">
+            <div class="w-10 h-10 rounded-lg bg-rose-500 text-white flex items-center justify-center shadow-md group-hover:shadow-lg group-hover:shadow-rose-300 group-hover:scale-105 transition-all duration-300">
+              <i data-lucide="log-out" class="w-5 h-5"></i>
             </div>
-            <div class="flex-1">
-              <span class="text-sm font-semibold text-rose-700 block">Logout</span>
-              <span class="text-[10px] text-rose-500">Keluar dari sistem</span>
-            </div>
-            <i data-lucide="chevron-right" class="w-4 h-4 text-rose-400 group-hover:translate-x-1 transition-transform"></i>
+            <span class="text-sm font-semibold text-slate-700 group-hover:text-white transition-colors">Logout</span>
           </button>
         </div>
       </nav>
@@ -557,30 +549,26 @@ function renderAdminDashboard() {
             </div>
 
             <!-- Quick Actions -->
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-              <button onclick="navigateTo('services')" class="flex items-center gap-3 p-4 rounded-xl bg-white border border-slate-100 shadow-sm hover:shadow-md hover:border-sky-200 transition-all text-left">
-                <div class="w-10 h-10 rounded-lg bg-sky-50 text-sky-500 flex items-center justify-center">
-                  <i data-lucide="heart-pulse" class="w-5 h-5"></i>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <button onclick="navigateTo('services')" class="flex items-center gap-4 p-5 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-lg hover:border-sky-200 transition-all text-left group">
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-sky-400 to-blue-500 text-white flex items-center justify-center shadow-md group-hover:shadow-lg transition-all">
+                  <i data-lucide="heart-pulse" class="w-7 h-7"></i>
                 </div>
-                <span class="text-sm font-medium text-slate-700">Layanan</span>
+                <span class="text-base font-bold text-slate-800">Layanan</span>
               </button>
-              <button onclick="navigateTo('medicines')" class="flex items-center gap-3 p-4 rounded-xl bg-white border border-slate-100 shadow-sm hover:shadow-md hover:border-indigo-200 transition-all text-left">
-                <div class="w-10 h-10 rounded-lg bg-indigo-50 text-indigo-500 flex items-center justify-center">
-                  <i data-lucide="pill" class="w-5 h-5"></i>
+              
+              <button onclick="navigateTo('registrations')" class="flex items-center gap-4 p-5 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-lg hover:border-amber-200 transition-all text-left group">
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 text-white flex items-center justify-center shadow-md group-hover:shadow-lg transition-all">
+                  <i data-lucide="users" class="w-7 h-7"></i>
                 </div>
-                <span class="text-sm font-medium text-slate-700">Stok Obat</span>
+                <span class="text-base font-bold text-slate-800">Pendaftaran</span>
               </button>
-              <button onclick="navigateTo('registrations')" class="flex items-center gap-3 p-4 rounded-xl bg-white border border-slate-100 shadow-sm hover:shadow-md hover:border-amber-200 transition-all text-left">
-                <div class="w-10 h-10 rounded-lg bg-amber-50 text-amber-500 flex items-center justify-center">
-                  <i data-lucide="users" class="w-5 h-5"></i>
+              
+              <button onclick="navigateTo('profile')" class="flex items-center gap-4 p-5 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-lg hover:border-emerald-200 transition-all text-left group">
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-400 to-teal-500 text-white flex items-center justify-center shadow-md group-hover:shadow-lg transition-all">
+                  <i data-lucide="user-circle" class="w-7 h-7"></i>
                 </div>
-                <span class="text-sm font-medium text-slate-700">Pendaftaran</span>
-              </button>
-              <button onclick="navigateTo('profile')" class="flex items-center gap-3 p-4 rounded-xl bg-white border border-slate-100 shadow-sm hover:shadow-md hover:border-emerald-200 transition-all text-left">
-                <div class="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-500 flex items-center justify-center">
-                  <i data-lucide="user-circle" class="w-5 h-5"></i>
-                </div>
-                <span class="text-sm font-medium text-slate-700">Profil</span>
+                <span class="text-base font-bold text-slate-800">Profil</span>
               </button>
             </div>
           </div>
