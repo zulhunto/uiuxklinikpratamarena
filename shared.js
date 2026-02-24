@@ -21,11 +21,11 @@ const defaultServicesData = [
 
 // Default medicine stock
 const defaultMedicineStock = [
-  { id: 1, name: 'Paracetamol 500mg', dosis: '500mg', usage: '3×1 tablet', qty: 50, status: 'Tersedia', addedDate: new Date().toISOString().slice(0, 10), addedTime: '08:00' },
-  { id: 2, name: 'Amoxicillin 500mg', dosis: '500mg', usage: '3×1 tablet', qty: 30, status: 'Tersedia', addedDate: new Date().toISOString().slice(0, 10), addedTime: '08:15' },
-  { id: 3, name: 'Antasida Doen', dosis: '-', usage: '3×1 tablet', qty: 0, status: 'Habis', addedDate: new Date().toISOString().slice(0, 10), addedTime: '08:30' },
-  { id: 4, name: 'Vitamin C 500mg', dosis: '500mg', usage: '1×1 tablet', qty: 100, status: 'Tersedia', addedDate: new Date().toISOString().slice(0, 10), addedTime: '09:00' },
-  { id: 5, name: 'Captopril 25mg', dosis: '25mg', usage: '2×1 tablet', qty: 25, status: 'Tersedia', addedDate: new Date().toISOString().slice(0, 10), addedTime: '09:15' }
+  { id: 1, name: 'Paracetamol 500mg', dosis: '500mg', qty: 50, status: 'Tersedia', addedDate: new Date().toISOString().slice(0, 10), addedTime: '08:00' },
+  { id: 2, name: 'Amoxicillin 500mg', dosis: '500mg', qty: 30, status: 'Tersedia', addedDate: new Date().toISOString().slice(0, 10), addedTime: '08:15' },
+  { id: 3, name: 'Antasida Doen', dosis: '-', qty: 0, status: 'Habis', addedDate: new Date().toISOString().slice(0, 10), addedTime: '08:30' },
+  { id: 4, name: 'Vitamin C 500mg', dosis: '500mg', qty: 100, status: 'Tersedia', addedDate: new Date().toISOString().slice(0, 10), addedTime: '09:00' },
+  { id: 5, name: 'Captopril 25mg', dosis: '25mg', qty: 25, status: 'Tersedia', addedDate: new Date().toISOString().slice(0, 10), addedTime: '09:15' }
 ];
 
 // LocalStorage helpers
@@ -48,24 +48,30 @@ let medicineStock = load(LS_KEYS.medicines, defaultMedicineStock);
 let registrations = load(LS_KEYS.registrations, []);
 let currentUser = load(LS_KEYS.user, null);
 
-// Migrate old medicine data to new format (dosis + usage)
+// Migrate old medicine data to new format (dosis only)
 function migrateMedicineData() {
   const currentData = load(LS_KEYS.medicines, []);
   if (!currentData || currentData.length === 0) return;
   
   let needsMigration = false;
   const migratedData = currentData.map(med => {
-    // Check if medicine has old format (usage in dosis field without separate usage field)
-    if (med.dosis && !med.usage && med.dosis.includes('×')) {
+    // Check if medicine has old format with usage field
+    if (med.usage) {
       needsMigration = true;
-      // Extract strength from name if possible, otherwise use '-'
+      // Remove usage field, keep only dosis
+      const { usage, ...cleanMed } = med;
+      return cleanMed;
+    }
+    // Also migrate old format where dosis contains usage pattern
+    if (med.dosis && med.dosis.includes('×')) {
+      needsMigration = true;
+      // Extract strength from name if possible
       const nameMatch = med.name.match(/\d+mg/i);
       const strength = nameMatch ? nameMatch[0] : '-';
       
       return {
         ...med,
-        dosis: strength,
-        usage: med.dosis
+        dosis: strength
       };
     }
     return med;
@@ -74,7 +80,7 @@ function migrateMedicineData() {
   if (needsMigration) {
     save(LS_KEYS.medicines, migratedData);
     medicineStock = migratedData; // Update global variable
-    console.log('✓ Medicine data migrated to new format (dosis + usage)');
+    console.log('✓ Medicine data migrated (usage field removed)');
   }
 }
 

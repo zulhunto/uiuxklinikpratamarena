@@ -718,7 +718,7 @@ function renderApotekerMedicines() {
                               </div>
                               <div>
                                 <p class="text-sm font-semibold text-slate-800">${med.name}</p>
-                                <p class="text-xs text-slate-400">${med.dosis ? med.dosis + ' • ' + (med.usage || '-') : (med.usage || '-')}</p>
+                                <p class="text-xs text-slate-400">${med.dosis || '-'}</p>
                               </div>
                             </div>
                           </td>
@@ -779,15 +779,6 @@ function renderApotekerMedicines() {
                           <i data-lucide="gauge" class="w-4 h-4"></i>
                         </div>
                         <input name="dosis" required class="w-full pl-11 pr-4 py-3 bg-slate-50 rounded-xl border border-slate-200 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all" placeholder="Contoh: 500mg" />
-                      </div>
-                    </div>
-                    <div>
-                      <label class="block text-xs font-semibold text-slate-700 mb-2">Aturan Pakai</label>
-                      <div class="relative">
-                        <div class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
-                          <i data-lucide="clipboard-list" class="w-4 h-4"></i>
-                        </div>
-                        <input name="usage" class="w-full pl-11 pr-4 py-3 bg-slate-50 rounded-xl border border-slate-200 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all" placeholder="Contoh: 3×1 tablet setelah makan" />
                       </div>
                     </div>
                     <div>
@@ -1585,7 +1576,6 @@ function editMedicineApoteker(index) {
   document.getElementById('editMedicineIndex').value = index;
   document.getElementById('editMedicineName').value = med.name;
   document.getElementById('editMedicineDosis').value = med.dosis || '';
-  document.getElementById('editMedicineUsage').value = med.usage || '';
   document.getElementById('editMedicineQty').value = med.qty != null ? med.qty : '';
   
   // Show modal
@@ -1605,7 +1595,6 @@ function saveEditedMedicine(event) {
   const index = parseInt(document.getElementById('editMedicineIndex').value);
   const name = document.getElementById('editMedicineName').value.trim();
   const dosis = document.getElementById('editMedicineDosis').value.trim();
-  const usage = document.getElementById('editMedicineUsage').value.trim();
   const qty = parseInt(document.getElementById('editMedicineQty').value);
   
   // Validate name and qty
@@ -1624,7 +1613,6 @@ function saveEditedMedicine(event) {
     ...medicineStock[index],
     name,
     dosis,
-    usage,
     qty
   };
   
@@ -2401,18 +2389,10 @@ function printMedicineInflowToday() {
   }
 }
 
-// Initialize
-document.addEventListener('DOMContentLoaded', () => {
-  // Setup edit medicine form listener
-  const editForm = document.getElementById('editMedicineForm');
-  if (editForm) {
-    editForm.addEventListener('submit', saveEditedMedicine);
-  }
-  
-  if (checkAuth()) {
-    navigateTo('dashboard');
-  }
-});
+// ============================================================================
+// INITIALIZATION
+// Moved to apoteker.js to ensure all functions are available
+// ============================================================================
 
 // ============================================================================
 // GLOBAL EXPORTS

@@ -41,6 +41,21 @@ function navigateTo(page) {
 }
 
 // ============================================================================
+// INITIALIZATION
+// ============================================================================
+document.addEventListener('DOMContentLoaded', () => {
+  // Setup edit medicine form listener
+  const editForm = document.getElementById('editMedicineForm');
+  if (editForm) {
+    editForm.addEventListener('submit', saveEditedMedicine);
+  }
+  
+  if (checkAuth()) {
+    navigateTo('dashboard');
+  }
+});
+
+// ============================================================================
 // UI RENDER FUNCTIONS
 // ============================================================================
 
