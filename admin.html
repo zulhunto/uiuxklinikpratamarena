@@ -60,6 +60,109 @@
         </div>
     </div>
 
+    <!-- EDIT SERVICE MODAL -->
+    <div id="editServiceModal" class="hidden fixed inset-0 z-[95] flex items-center justify-center p-4 bg-black/30 backdrop-blur-sm">
+        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-2xl overflow-hidden">
+            <!-- Header -->
+            <div class="bg-gradient-to-r from-sky-500 via-cyan-500 to-sky-600 px-8 py-6">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center">
+                            <i data-lucide="edit-3" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-bold text-white">Edit Layanan</h2>
+                            <p class="text-xs text-white/80">Perbarui informasi layanan</p>
+                        </div>
+                    </div>
+                    <button onclick="closeEditModal()" class="text-white/70 hover:text-white transition-all p-2 hover:bg-white/10 rounded-xl">
+                        <i data-lucide="x" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Form -->
+            <form id="editServiceForm" class="p-8 space-y-6">
+                <input type="hidden" id="editServiceIndex">
+                
+                <!-- Nama Layanan -->
+                <div>
+                    <label for="editServiceName" class="block text-sm font-bold text-slate-700 mb-2">
+                        Nama Layanan <span class="text-rose-500">*</span>
+                    </label>
+                    <input 
+                        type="text" 
+                        id="editServiceName" 
+                        name="editServiceName" 
+                        required
+                        class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-sky-500 focus:ring-2 focus:ring-sky-200 transition-all outline-none text-slate-800 font-medium"
+                        placeholder="Contoh: Poli Umum"
+                    >
+                </div>
+                
+                <!-- Deskripsi -->
+                <div>
+                    <label for="editServiceDesc" class="block text-sm font-bold text-slate-700 mb-2">
+                        Deskripsi
+                    </label>
+                    <textarea 
+                        id="editServiceDesc" 
+                        name="editServiceDesc" 
+                        rows="3"
+                        class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-sky-500 focus:ring-2 focus:ring-sky-200 transition-all outline-none text-slate-800 font-medium resize-none"
+                        placeholder="Deskripsi layanan..."
+                    ></textarea>
+                </div>
+                
+                <!-- Jadwal -->
+                <div>
+                    <label for="editServiceSchedule" class="block text-sm font-bold text-slate-700 mb-2">
+                        Jadwal Layanan
+                    </label>
+                    <input 
+                        type="text" 
+                        id="editServiceSchedule" 
+                        name="editServiceSchedule" 
+                        class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-sky-500 focus:ring-2 focus:ring-sky-200 transition-all outline-none text-slate-800 font-medium"
+                        placeholder="Contoh: Senin - Jumat, 08:00 - 14:00"
+                    >
+                </div>
+                
+                <!-- Dokter/Penanggung Jawab -->
+                <div>
+                    <label for="editServiceDoctor" class="block text-sm font-bold text-slate-700 mb-2">
+                        Dokter/Penanggung Jawab
+                    </label>
+                    <input 
+                        type="text" 
+                        id="editServiceDoctor" 
+                        name="editServiceDoctor" 
+                        class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-sky-500 focus:ring-2 focus:ring-sky-200 transition-all outline-none text-slate-800 font-medium"
+                        placeholder="Nama dokter atau penanggung jawab"
+                    >
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row gap-3 pt-4 border-t border-slate-100">
+                    <button 
+                        type="submit" 
+                        class="flex-1 bg-gradient-to-r from-sky-500 to-cyan-500 text-white py-3.5 rounded-2xl font-bold hover:from-sky-600 hover:to-cyan-600 transition-all shadow-md shadow-sky-200 hover:shadow-lg hover:shadow-sky-300 text-sm"
+                    >
+                        <i data-lucide="save" class="w-4 h-4 inline-block mr-2"></i>
+                        Simpan Perubahan
+                    </button>
+                    <button 
+                        type="button" 
+                        onclick="closeEditModal()" 
+                        class="flex-1 bg-slate-50 text-slate-700 py-3.5 rounded-2xl font-bold hover:bg-slate-100 transition-all border border-slate-200 text-sm"
+                    >
+                        Batal
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- Script Files - Load Order Matters -->
     <script src="shared.js"></script>
     <script src="utils.js"></script>

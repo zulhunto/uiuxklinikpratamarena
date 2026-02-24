@@ -114,41 +114,55 @@ function toggleAdminComplaintField() {
   }
 }
 
-// Edit layanan
+// Edit layanan dengan modal
 function editService(index) {
   const service = servicesData[index];
   if (!service) return;
   
-  // Prompt untuk edit nama
-  const newName = prompt('Edit nama layanan:', service.name);
-  if (newName === null) return; // User cancel
-  if (!newName.trim()) {
+  // Populate form with service data
+  document.getElementById('editServiceIndex').value = index;
+  document.getElementById('editServiceName').value = service.name;
+  document.getElementById('editServiceDesc').value = service.desc || '';
+  document.getElementById('editServiceSchedule').value = service.schedule || '';
+  document.getElementById('editServiceDoctor').value = service.doctor || '';
+  
+  // Show modal
+  document.getElementById('editServiceModal').classList.remove('hidden');
+}
+
+// Close edit modal
+function closeEditModal() {
+  document.getElementById('editServiceModal').classList.add('hidden');
+  document.getElementById('editServiceForm').reset();
+}
+
+// Save edited service
+function saveEditedService(event) {
+  event.preventDefault();
+  
+  const index = parseInt(document.getElementById('editServiceIndex').value);
+  const name = document.getElementById('editServiceName').value.trim();
+  const desc = document.getElementById('editServiceDesc').value.trim();
+  const schedule = document.getElementById('editServiceSchedule').value.trim();
+  const doctor = document.getElementById('editServiceDoctor').value.trim();
+  
+  // Validate name
+  if (!name) {
     showToast('Nama layanan tidak boleh kosong', 'error');
     return;
   }
   
-  // Prompt untuk edit deskripsi
-  const newDesc = prompt('Edit deskripsi layanan:', service.desc || '');
-  if (newDesc === null) return; // User cancel
-  
-  // Prompt untuk edit jadwal
-  const newSchedule = prompt('Edit jadwal layanan:', service.schedule || '');
-  if (newSchedule === null) return; // User cancel
-  
-  // Prompt untuk edit dokter
-  const newDoctor = prompt('Edit dokter/penanggung jawab:', service.doctor || '');
-  if (newDoctor === null) return; // User cancel
-  
   // Update service data
   servicesData[index] = {
-    ...service,
-    name: newName.trim(),
-    desc: newDesc.trim(),
-    schedule: newSchedule.trim(),
-    doctor: newDoctor.trim()
+    ...servicesData[index],
+    name,
+    desc,
+    schedule,
+    doctor
   };
   
   persistServices();
+  closeEditModal();
   navigateTo('services');
   showToast('Layanan berhasil diperbarui', 'success');
 }
@@ -1009,9 +1023,19 @@ function confirmLogout() {
   window.location.href = 'index.html';
 }
 
+// Setup edit service form listener
+document.addEventListener('DOMContentLoaded', () => {
+  const editForm = document.getElementById('editServiceForm');
+  if (editForm) {
+    editForm.addEventListener('submit', saveEditedService);
+  }
+});
+
 // ============================================================================
 // GLOBAL EXPORTS
 // Expose functions to global scope for inline HTML event handlers
 // ============================================================================
 
 window.editService = editService;
+window.closeEditModal = closeEditModal;
+window.saveEditedService = saveEditedService;
