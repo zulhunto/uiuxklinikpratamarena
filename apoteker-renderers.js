@@ -531,7 +531,7 @@ function renderApotekerMedicines() {
   const apotekerName = currentUser?.name || 'Apoteker';
   const totalItems = medicineStock.length;
   const totalAvailable = medicineStock.filter(m => m.status === 'Tersedia').length;
-  const todayOutflow = load('medicineOutflow', []).filter(o => o.date === new Date().toISOString().slice(0,10)).length;
+  const totalStock = medicineStock.reduce((sum, m) => sum + (m.qty || 0), 0);
   
   return `
     <section class="bg-[#f5f7fb] min-h-screen w-full overflow-x-hidden">
@@ -651,16 +651,16 @@ function renderApotekerMedicines() {
               
               <div class="bg-white rounded-2xl p-5 border border-slate-100 shadow-sm hover:shadow-md transition-all group">
                 <div class="flex items-center gap-3 mb-4">
-                  <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-500 flex items-center justify-center group-hover:bg-amber-500 group-hover:text-white transition-all">
-                    <i data-lucide="arrow-up-from-line" class="w-6 h-6"></i>
+                  <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-500 flex items-center justify-center group-hover:bg-indigo-500 group-hover:text-white transition-all">
+                    <i data-lucide="package" class="w-6 h-6"></i>
                   </div>
                   <div class="flex-1">
-                    <p class="text-2xl font-bold text-slate-900">${todayOutflow}</p>
-                    <p class="text-xs text-slate-500">Keluar Hari Ini</p>
+                    <p class="text-2xl font-bold text-slate-900">${totalStock}</p>
+                    <p class="text-xs text-slate-500">Total Stok</p>
                   </div>
                 </div>
                 <div class="flex items-center gap-1.5">
-                  <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-slate-50 text-slate-600 text-[10px] font-medium">Hari Ini</span>
+                  <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-slate-50 text-slate-600 text-[10px] font-medium">Semua Obat</span>
                 </div>
               </div>
             </div>
