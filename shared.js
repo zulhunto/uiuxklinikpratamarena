@@ -21,11 +21,11 @@ const defaultServicesData = [
 
 // Default medicine stock
 const defaultMedicineStock = [
-  { id: 1, name: 'Paracetamol 500mg', dosis: '3x1 tablet', qty: 50, status: 'Tersedia', addedDate: new Date().toISOString().slice(0, 10), addedTime: '08:00' },
-  { id: 2, name: 'Amoxicillin 500mg', dosis: '3x1 tablet', qty: 30, status: 'Tersedia', addedDate: new Date().toISOString().slice(0, 10), addedTime: '08:15' },
-  { id: 3, name: 'Antasida Doen', dosis: '3x1 tablet', qty: 0, status: 'Habis', addedDate: new Date().toISOString().slice(0, 10), addedTime: '08:30' },
-  { id: 4, name: 'Vitamin C 500mg', dosis: '1x1 tablet', qty: 100, status: 'Tersedia', addedDate: new Date().toISOString().slice(0, 10), addedTime: '09:00' },
-  { id: 5, name: 'Captopril 25mg', dosis: '2x1 tablet', qty: 25, status: 'Tersedia', addedDate: new Date().toISOString().slice(0, 10), addedTime: '09:15' }
+  { id: 1, name: 'Paracetamol 500mg', dosis: '500mg', usage: '3×1 tablet', qty: 50, status: 'Tersedia', addedDate: new Date().toISOString().slice(0, 10), addedTime: '08:00' },
+  { id: 2, name: 'Amoxicillin 500mg', dosis: '500mg', usage: '3×1 tablet', qty: 30, status: 'Tersedia', addedDate: new Date().toISOString().slice(0, 10), addedTime: '08:15' },
+  { id: 3, name: 'Antasida Doen', dosis: '-', usage: '3×1 tablet', qty: 0, status: 'Habis', addedDate: new Date().toISOString().slice(0, 10), addedTime: '08:30' },
+  { id: 4, name: 'Vitamin C 500mg', dosis: '500mg', usage: '1×1 tablet', qty: 100, status: 'Tersedia', addedDate: new Date().toISOString().slice(0, 10), addedTime: '09:00' },
+  { id: 5, name: 'Captopril 25mg', dosis: '25mg', usage: '2×1 tablet', qty: 25, status: 'Tersedia', addedDate: new Date().toISOString().slice(0, 10), addedTime: '09:15' }
 ];
 
 // LocalStorage helpers
@@ -47,6 +47,39 @@ let servicesData = load(LS_KEYS.services, defaultServicesData);
 let medicineStock = load(LS_KEYS.medicines, defaultMedicineStock);
 let registrations = load(LS_KEYS.registrations, []);
 let currentUser = load(LS_KEYS.user, null);
+
+// Migrate old medicine data to new format (dosis + usage)
+function migrateMedicineData() {
+  const currentData = load(LS_KEYS.medicines, []);
+  if (!currentData || currentData.length === 0) return;
+  
+  let needsMigration = false;
+  const migratedData = currentData.map(med => {
+    // Check if medicine has old format (usage in dosis field without separate usage field)
+    if (med.dosis && !med.usage && med.dosis.includes('×')) {
+      needsMigration = true;
+      // Extract strength from name if possible, otherwise use '-'
+      const nameMatch = med.name.match(/\d+mg/i);
+      const strength = nameMatch ? nameMatch[0] : '-';
+      
+      return {
+        ...med,
+        dosis: strength,
+        usage: med.dosis
+      };
+    }
+    return med;
+  });
+  
+  if (needsMigration) {
+    save(LS_KEYS.medicines, migratedData);
+    medicineStock = migratedData; // Update global variable
+    console.log('✓ Medicine data migrated to new format (dosis + usage)');
+  }
+}
+
+// Run migration on page load
+migrateMedicineData();
 
 // Persist functions
 function persistServices() {
